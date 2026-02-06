@@ -1,0 +1,1 @@
+@echo off\necho Placeholder gradlew.bat\n

@@ -1,0 +1,1 @@
+# Driver App - Android (GitHub Actions build-ready)\n\nThis repo contains only the Android project ready to produce an APK via GitHub Actions. See docs/BUILD_APK.md for details.\n
