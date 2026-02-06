@@ -3,17 +3,55 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
 
-    <Button
-        android:id="@+id/buttonAdd"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Adicionar Oferta"/>
+        android:text="Configurações Necessárias"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/buttonEnableService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1. Ativar Leitura de Tela (Acessibilidade)"
+        android:backgroundTint="#2196F3"/>
+
+    <Button
+        android:id="@+id/buttonOverlayPermission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2. Ativar Janela Flutuante (Sobreposição)"
+        android:backgroundTint="#2196F3"
+        android:layout_marginBottom="16dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Histórico de Corridas"
+        android:textStyle="bold"/>
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Simular Oferta Aleatória"
+        android:layout_marginTop="8dp"/>
+
 </LinearLayout>
