@@ -12,7 +12,7 @@
     <application
         android:allowBackup="true"
         android:label="Driver App"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@android:drawable/btn_star"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         <activity 
