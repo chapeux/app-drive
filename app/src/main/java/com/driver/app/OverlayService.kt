@@ -22,14 +22,16 @@ class OverlayService : Service() {
         val params = WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
+                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+            else
+                WindowManager.LayoutParams.TYPE_PHONE,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
             PixelFormat.TRANSLUCENT
         )
 
         params.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
-        params.y = 100
-
+        params.y = 150
         windowManager.addView(overlayView, params)
     }
 
@@ -37,26 +39,21 @@ class OverlayService : Service() {
         val valor = intent?.getDoubleExtra("valor", 0.0) ?: 0.0
         val classification = intent?.getStringExtra("classification") ?: "---"
         
-        val txtValue = overlayView.findViewById<TextView>(R.id.txtValue)
+        overlayView.findViewById<TextView>(R.id.txtValue).text = "R$ %.2f".format(valor)
         val txtStatus = overlayView.findViewById<TextView>(R.id.txtStatus)
-
-        txtValue.text = "R$ %.2f".format(valor)
         txtStatus.text = classification
         
-        // Mudar cor baseado na classificação
         txtStatus.setTextColor(when(classification) {
             "VERDE" -> android.graphics.Color.GREEN
             "VERMELHO" -> android.graphics.Color.RED
             else -> android.graphics.Color.YELLOW
         })
-
         return START_STICKY
     }
 
     override fun onBind(intent: Intent?): IBinder? = null
-
     override fun onDestroy() {
         super.onDestroy()
-        windowManager.removeView(overlayView)
+        if (::overlayView.isInitialized) windowManager.removeView(overlayView)
     }
 }
